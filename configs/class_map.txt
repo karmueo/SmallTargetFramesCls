@@ -1,0 +1,4 @@
+0 bird
+1 uav
+2 night_uav
+3 plane

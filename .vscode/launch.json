@@ -1,0 +1,39 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "train (with position)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "scripts/train.py",
+            "args": [
+                "--config", "configs/default.yaml"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "eval-test",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "scripts/eval.py",
+            "args": [
+                "--config", "configs/default.yaml",
+                "--checkpoint", "checkpoints/best.pt",
+                "--root", "dataset/110_video_frames_2025_11_all_200_have_json_test",
+                "--test-csv", "dataset/110_video_frames_2025_11_all_200_have_json_test/test.csv"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        }
+    ]
+}
