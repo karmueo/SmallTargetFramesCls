@@ -3,6 +3,7 @@ import pytest
 torch = pytest.importorskip("torch")
 
 from src.models import ResNetFeatureExtractor
+from src.models.feature_extractor import MobileNetV2FeatureExtractor, build_feature_extractor
 
 
 def test_resnet_feature_extractor_rgb_forward_shape():
@@ -24,3 +25,23 @@ def test_resnet_feature_extractor_grayscale_support():
     conv1 = model.stem[0]
     assert conv1.weight.shape[1] == 1
     assert out.shape == (1, model.out_channels)
+
+
+def test_mobilenet_feature_extractor_forward_shape():
+    model = build_feature_extractor(name="mobilenet_v2", pretrained=False, in_channels=3)
+    x = torch.randn(2, 3, 64, 64)
+
+    out = model(x)
+
+    assert out.shape == (2, model.out_channels)
+
+
+def test_mobilenet_feature_extractor_grayscale():
+    model = MobileNetV2FeatureExtractor(pretrained=False, in_channels=1)
+    x = torch.randn(1, 1, 64, 64)
+
+    out = model(x)
+
+    conv1 = model.features[0][0]
+    assert conv1.in_channels == 1
+    assert out.shape[1] == model.out_channels

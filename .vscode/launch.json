@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "scripts/train.py",
             "args": [
-                "--config", "configs/default.yaml"
+                "--config", "configs/mobilenetv2.yaml",
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
@@ -26,8 +26,8 @@
             "args": [
                 "--config", "configs/default.yaml",
                 "--checkpoint", "checkpoints/best.pt",
-                "--root", "dataset/110_video_frames_2025_11_all_200_have_json_test",
-                "--test-csv", "dataset/110_video_frames_2025_11_all_200_have_json_test/test.csv"
+                "--root", "dataset/110_video_frames_2025_11_all_200_have_json",
+                "--test-csv", "dataset/110_video_frames_2025_11_all_200_have_json/test.csv"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",

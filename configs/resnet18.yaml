@@ -1,0 +1,65 @@
+seed: 42
+
+data:
+  root: dataset/110_video_frames_2025_11_all_200_have_json
+  train_csv: dataset/110_video_frames_2025_11_all_200_have_json/train.csv
+  val_csv: dataset/110_video_frames_2025_11_all_200_have_json/val.csv
+  test_csv: dataset/110_video_frames_2025_11_all_200_have_json/test.csv
+  # root: dataset/110_video_frames_2025_11_all_200_have_json_test
+  # train_csv: dataset/110_video_frames_2025_11_all_200_have_json_test/train.csv
+  # val_csv: dataset/110_video_frames_2025_11_all_200_have_json_test/val.csv
+  # test_csv: dataset/110_video_frames_2025_11_all_200_have_json_test/test.csv
+  class_map: configs/class_map.txt
+  batch_size: 8
+  num_workers: 8
+  pin_memory: true
+  frame_sampling:
+    target_length: 64
+    strategy: random_offset  # uniform | random_offset | fixed_rate
+    sampling_rate: 2
+    pad_mode: repeat   # repeat | loop | mirror
+    jitter: true
+    seed: 42
+  image_size: 64
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+model:
+  feature_name: resnet18
+  pretrained: true
+  in_channels: 3
+  global_pool: avg    # avg | max
+  tcn_channels: [256, 256]
+  tcn_kernel_size: 3
+  tcn_dropout: 0.1
+  temporal_pool: mean # last | mean | max
+  head_dropout: 0.2
+  num_classes: 4
+  use_position: true
+  position_embed_dim: 64
+  position_hidden_dim: 64
+  position_dropout: 0.1
+  position_layernorm: true
+
+optimizer:
+  name: adamw       # adam | adamw | sgd
+  lr: 3.0e-4
+  weight_decay: 1.0e-4
+  betas: [0.9, 0.999]
+  momentum: 0.9     # 仅在 sgd 下使用
+
+scheduler:
+  type: cosine      # cosine | step | none
+  warmup_steps: 200
+  step_size_epochs: 5
+  gamma: 0.1
+
+training:
+  epochs: 40
+  log_interval: 10
+  val_interval: 1
+  grad_clip_norm: 1.0
+  mixed_precision: true
+  ckpt_dir: checkpoints
+  save_best: true
+  resume: null      # 可填入已有 checkpoint 路径

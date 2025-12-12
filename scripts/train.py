@@ -344,12 +344,29 @@ def parse_args() -> argparse.Namespace:
         default=Path("configs/default.yaml"),
         help="Path to YAML config",
     )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=None,
+        help="Checkpoint output directory. Default: checkpoints/<config_name>",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
     cfg = load_config(args.config)
+    cfg.setdefault("training", {})
+    ckpt_dir_in_cfg = cfg["training"].get("ckpt_dir")
+    ckpt_dir_override: Path | None = args.output_dir
+    if ckpt_dir_override is not None:
+        ckpt_dir = ckpt_dir_override
+    elif ckpt_dir_in_cfg in (None, "", "checkpoints"):
+        # 默认放在 checkpoints/<配置文件名> 下
+        ckpt_dir = Path("checkpoints") / args.config.stem
+    else:
+        ckpt_dir = Path(ckpt_dir_in_cfg)
+    cfg["training"]["ckpt_dir"] = str(ckpt_dir)
     train_loop(cfg)
 
 
