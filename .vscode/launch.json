@@ -24,10 +24,28 @@
             "request": "launch",
             "program": "scripts/eval.py",
             "args": [
-                "--config", "configs/default.yaml",
-                "--checkpoint", "checkpoints/best.pt",
-                "--root", "dataset/110_video_frames_2025_11_all_200_have_json",
-                "--test-csv", "dataset/110_video_frames_2025_11_all_200_have_json/test.csv"
+                "--config", "configs/mobilenetv2.yaml",
+                "--checkpoint", "checkpoints/mobilenetv2/best.pt",
+                "--root", "dataset/110_video_frames_2025_11_all_200_have_json_test",
+                "--test-csv", "dataset/110_video_frames_2025_11_all_200_have_json_test/test.csv"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "export-onnx",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "scripts/export_onnx.py",
+                "args": [
+                    "--config", "configs/mobilenetv2.yaml",
+                "--checkpoint", "checkpoints/mobilenetv2/best.pt",
+                "--onnx-path", "checkpoints/mobilenetv2/small_target_cls_mobilenet_v0.onnx",
+                "--max-batches", "3",
+                "--device", "cpu"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
