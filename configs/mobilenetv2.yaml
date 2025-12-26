@@ -1,14 +1,14 @@
 seed: 42
 
 data:
-  root: dataset/110_video_frames_2025_11_all_200_have_json
-  train_csv: dataset/110_video_frames_2025_11_all_200_have_json/train.csv
-  val_csv: dataset/110_video_frames_2025_11_all_200_have_json/val.csv
-  test_csv: dataset/110_video_frames_2025_11_all_200_have_json/test.csv
-  # root: dataset/110_video_frames_2025_11_all_200_have_json_test
-  # train_csv: dataset/110_video_frames_2025_11_all_200_have_json_test/train.csv
-  # val_csv: dataset/110_video_frames_2025_11_all_200_have_json_test/val.csv
-  # test_csv: dataset/110_video_frames_2025_11_all_200_have_json_test/test.csv
+  root: dataset/mmaction2/110_video_frames_2025_11_12_all_200_have_json
+  train_csv: dataset/mmaction2/110_video_frames_2025_11_12_all_200_have_json/train.csv
+  val_csv: dataset/mmaction2/110_video_frames_2025_11_12_all_200_have_json/val.csv
+  test_csv: dataset/mmaction2/110_video_frames_2025_11_12_all_200_have_json/test.csv
+  # root: dataset/mmaction2/110_video_frames_2025_11_12_all_200_have_json_test
+  # train_csv: dataset/mmaction2/110_video_frames_2025_11_12_all_200_have_json_test/train.csv
+  # val_csv: dataset/mmaction2/110_video_frames_2025_11_12_all_200_have_json_test/val.csv
+  # test_csv: dataset/mmaction2/110_video_frames_2025_11_12_all_200_have_json_test/test.csv
   class_map: configs/class_map.txt
   batch_size: 8
   num_workers: 8

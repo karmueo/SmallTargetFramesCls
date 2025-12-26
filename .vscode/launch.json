@@ -26,8 +26,8 @@
             "args": [
                 "--config", "configs/mobilenetv2.yaml",
                 "--checkpoint", "checkpoints/mobilenetv2/best.pt",
-                "--root", "dataset/110_video_frames_2025_11_all_200_have_json_test",
-                "--test-csv", "dataset/110_video_frames_2025_11_all_200_have_json_test/test.csv"
+                "--root", "/home/tl/data/datasets/mmaction2/110_video_frames_2025_12_hard_200_have_json_mixformerv2",
+                "--test-csv", "/home/tl/data/datasets/mmaction2/110_video_frames_2025_12_hard_200_have_json_mixformerv2/test.csv"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
